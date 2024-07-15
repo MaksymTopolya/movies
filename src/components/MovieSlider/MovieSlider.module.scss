@@ -1,0 +1,32 @@
+@use "/src/mixins.scss" as mixins;
+
+.sliderContainer {
+    width: 100%;
+    max-width: 2200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .slide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+
+        img {
+            width: 295px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+.newFilms {
+    @include mixins.buttonStyles($width: 170px, $height: 15%);
+}

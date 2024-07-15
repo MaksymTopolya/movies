@@ -1,0 +1,82 @@
+.details {
+    padding: 20px;
+    border-radius: 5px;
+    background: transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .container {
+        display: flex;
+        gap: 46%;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .tagline {
+        font-size: 18px;
+        font-style: italic;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .detailsContainer {
+        display: flex;
+
+        .poster {
+            max-width: 400px;
+            max-height: 650px;
+            margin-right: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .label {
+            font-weight: bold;
+        }
+        .favoriteBtn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #e74c3c;
+            padding: 0;
+            margin: 0;
+            &hover {
+                color: #c0392b;
+            }
+        }
+
+        .genreTitle {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .genreList {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+.loading {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}

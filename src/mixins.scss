@@ -1,0 +1,27 @@
+@use "sass:meta";
+
+@mixin buttonStyles($width: 100px, $height: 25px) {
+    width: $width;
+    height: $height;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+    &:active {
+        transform: translateY(1px);
+    }
+}

@@ -1,0 +1,50 @@
+@use "/src/mixins.scss" as mixins;
+.container {
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a, #333333);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+    }
+    .list li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 200px;
+
+        .img {
+            width: 200px;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .noImage {
+            width: 100%;
+            height: 300px; /* Висота блоку без картинки */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0; /* Колір фону блоку без картинки */
+            color: #888; /* Колір тексту в блоку без картинки */
+            font-size: 16px;
+            margin-bottom: 10px; /* Відступ між блоком без картинки та заголовком */
+        }
+
+        .title {
+            margin: 0; /* Зміна відступів від заголовка */
+            font-size: 18px; /* Зміна розміру шрифту заголовка */
+        }
+    }
+}

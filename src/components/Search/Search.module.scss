@@ -1,0 +1,32 @@
+@use "/src/mixins.scss" as mixins;
+.loadMore {
+    margin: 0 auto;
+    @include mixins.buttonStyles($width: 1300px, $height: 15%);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+
+    .form {
+        width: 500px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 10px;
+
+        .input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        .button {
+            @include mixins.buttonStyles($width: 70px, $height: 40px);
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@use "/src/mixins.scss" as mixins;
+
+.form {
+    display: flex;
+
+    .input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 300px;
+        margin-right: 10px;
+    }
+
+    .button {
+        @include mixins.buttonStyles($width: 70px, $height: 40px);
+    }
+}

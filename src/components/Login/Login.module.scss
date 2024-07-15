@@ -1,0 +1,49 @@
+/* styles.module.css */
+
+.container {
+    display: flex;
+}
+
+.userInfo {
+    text-align: center;
+}
+
+.loginBtn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loginBtn:hover {
+    background-color: #3b78e7;
+}
+
+.button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #d42f1f;
+}
+
+.link {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #4285f4;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

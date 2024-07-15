@@ -1,0 +1,71 @@
+.container {
+    background: linear-gradient(135deg, #1a1a1a, #333333);
+    display: flex;
+    gap: 10%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+
+    .title {
+        font-family: "Cinzel", serif;
+        font-size: 48px;
+        color: #ffd700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        background: linear-gradient(135deg, #2e2e2e, #1c1c1c);
+        padding: 20px;
+        border: 3px solid #ffd700;
+        border-radius: 10px;
+        text-align: center;
+        margin: 20px 0;
+        text-decoration: none;
+        animation: flicker 1.5s infinite;
+    }
+
+    .navLink {
+        color: #ffd700;
+        text-decoration: none;
+        font-size: 24px;
+        margin: 0 15px;
+        padding: 40px 20px;
+        border: 2px solid #ffd700;
+        border-radius: 5px;
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
+
+        &:hover {
+            background-color: #ffd700;
+            color: #1a1a1a;
+        }
+
+        &_active {
+            font-weight: bold;
+            color: red;
+        }
+    }
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.moviesBox {
+    display: flex;
+}
+
+.serialsBox {
+    display: flex;
+}
+
+.boxes {
+    display: flex;
+    gap: 200px;
+}

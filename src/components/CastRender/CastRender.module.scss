@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.actorInfo {
+    margin-left: 10px;
+}
+
+.actorImage {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+}
+
+.actor {
+    font-family: "Cinzel", serif;
+    font-size: 17px;
+    color: inherit;
+    margin: 0 5px;
+    display: inline;
+}
+
+.link:hover {
+    color: #1a1a1a;
+    background-color: grey;
+}
