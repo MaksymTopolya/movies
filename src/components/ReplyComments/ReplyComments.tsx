@@ -8,20 +8,28 @@ import css from './ReplyComments.module.scss';
 import { generateRandomId } from '../../Uttilities';
 interface ReplyCommentsProps {
   id: string;
+  collection: string;
 }
 
-const ReplyComments: FC<ReplyCommentsProps> = ({ id }) => {
-  const { movieId } = useParams<{ movieId: string }>();
+const ReplyComments: FC<ReplyCommentsProps> = ({ id, collection }) => {
+  const { serialId, movieId } = useParams<{
+    serialId?: string;
+    movieId?: string;
+  }>();
+  const movieOrSerialId = serialId || movieId;
   const { user } = useUser();
   const [value, setValue] = useState<string>('');
   const [update, setUpdate] = useState<number>(0);
 
   const replyId = generateRandomId();
-  const addMovieCommentsReply = async (movieId: string, comment: string) => {
+  const addMovieCommentsReply = async (
+    movieOrSerialId: string,
+    comment: string,
+  ) => {
     try {
       const movieCommentsReplyRef = firestore
-        .collection('MoviesComments')
-        .doc(movieId)
+        .collection(collection)
+        .doc(movieOrSerialId)
         .collection('comments')
         .doc(id);
 
@@ -51,7 +59,7 @@ const ReplyComments: FC<ReplyCommentsProps> = ({ id }) => {
     }
     if (value.trim() === '') return;
 
-    addMovieCommentsReply(movieId!, value);
+    addMovieCommentsReply(movieOrSerialId!, value);
     setUpdate(update + 1);
   };
 
@@ -70,9 +78,10 @@ const ReplyComments: FC<ReplyCommentsProps> = ({ id }) => {
         </button>
       </form>
       <ReplyCommentsRender
-        movieId={movieId!}
+        movieId={movieOrSerialId!}
         commentId={id}
         isUpdate={update}
+        collection={collection}
       />
     </div>
   );

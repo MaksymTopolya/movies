@@ -7,9 +7,10 @@ import { generateRandomId } from '../../Uttilities';
 
 interface Comments {
   movieId: string;
+  collection: string;
 }
 
-const Comments: FC<Comments> = ({ movieId }) => {
+const Comments: FC<Comments> = ({ movieId, collection }) => {
   const [update, setUpdate] = useState<number>(0);
   const [comment, setComment] = useState('');
   const { user } = useUser();
@@ -18,7 +19,7 @@ const Comments: FC<Comments> = ({ movieId }) => {
   const addMovieComments = async (movieId: string, comment: string) => {
     try {
       const movieCommentsRef = firestore
-        .collection('MoviesComments')
+        .collection(collection)
         .doc(movieId)
         .collection('comments')
         .doc(commentId);
@@ -63,7 +64,11 @@ const Comments: FC<Comments> = ({ movieId }) => {
           Submit
         </button>
       </form>
-      <RenderComments movieId={movieId} isUpdate={update} />
+      <RenderComments
+        movieId={movieId}
+        isUpdate={update}
+        collection={collection}
+      />
     </div>
   );
 };

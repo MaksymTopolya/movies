@@ -5,27 +5,33 @@ import { getYoutubeVideoTrailer } from '../../MoviesApi';
 import { youtubeVideoTrailer } from '../../redux/selectors';
 import { useParams } from 'react-router-dom';
 import css from './YouTubePlayer.module.scss';
+
 interface MyYouTubePlayerProps {
   movieId: string;
+  myDispatch: (id: number) => Promise<{ key: string }>;
+  mySelector: (state: []) => { key: string }[];
 }
 
-const MyYouTubePlayer: React.FC<MyYouTubePlayerProps> = () => {
-  const { movieId } = useParams<{ movieId: string }>();
+const MyYouTubePlayer: React.FC<MyYouTubePlayerProps> = ({
+  movieId,
+  myDispatch,
+  mySelector,
+}) => {
   const playerRef = useRef<HTMLDivElement>(null);
   const dispatch = useTypedDispatch();
-  const video = useTypedSelector(youtubeVideoTrailer)[0];
+  const video = useTypedSelector(mySelector)[0];
 
   useEffect(() => {
     const fetchVideoTrailer = async () => {
       try {
-        await dispatch(getYoutubeVideoTrailer(Number(movieId)));
+        await dispatch(myDispatch(Number(movieId)));
       } catch (error) {
         console.error('Error fetching video trailer:', error);
       }
     };
 
     fetchVideoTrailer();
-  }, [dispatch, movieId, video?.key]);
+  }, [dispatch, movieId]);
 
   if (!video?.key) {
     return <div id="player" ref={playerRef}></div>;

@@ -1,8 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../hooks';
 import { FC, useEffect } from 'react';
-import { getCast, getMovieById } from '../../MoviesApi';
-import { cast, movieDetailsById } from '../../redux/selectors';
+import { getCast, getMovieById, getYoutubeVideoTrailer } from '../../MoviesApi';
+import {
+  cast,
+  movieDetailsById,
+  youtubeVideoTrailer,
+} from '../../redux/selectors';
 import { Movie } from '../../types';
 import css from './MovieDetails.module.scss';
 import CastRender from '../CastRender/CastRender';
@@ -120,8 +124,12 @@ const MovieDetails: FC = () => {
           ) : (
             <div></div>
           )}
-          <MyYouTubePlayer movieId={movieId!} />
-          <Comments movieId={movieId!} />
+          <MyYouTubePlayer
+            movieId={movieId!}
+            myDispatch={getYoutubeVideoTrailer}
+            mySelector={youtubeVideoTrailer}
+          />
+          <Comments movieId={movieId!} collection="MoviesComments" />
         </div>
       </div>
     </div>

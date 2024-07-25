@@ -69,3 +69,17 @@ export const getCast = createAsyncThunk<CastType[], number>(
     }
   },
 );
+
+export const getYoutubeVideoTrailer = createAsyncThunk<{ key: string }, number>(
+  'movies/getYoutubeVideoTrailerForSerial',
+  async (id, thunkApi) => {
+    try {
+      const response = await axiosInstance.get(
+        `/tv/${id}/videos?language=en-US`,
+      );
+      return response.data.results;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  },
+);

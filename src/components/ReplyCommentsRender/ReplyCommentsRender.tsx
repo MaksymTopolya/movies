@@ -14,12 +14,14 @@ interface ReplyCommentsRenderProps {
   movieId: string;
   commentId: string;
   isUpdate: number;
+  collection: string;
 }
 
 export const ReplyCommentsRender: React.FC<ReplyCommentsRenderProps> = ({
   movieId,
   commentId,
   isUpdate,
+  collection,
 }) => {
   const [replies, setReplies] = useState<Reply[]>([]);
 
@@ -27,7 +29,7 @@ export const ReplyCommentsRender: React.FC<ReplyCommentsRenderProps> = ({
     const fetchReplies = async () => {
       try {
         const commentRef = firestore
-          .collection('MoviesComments')
+          .collection(collection)
           .doc(movieId)
           .collection('comments')
           .doc(commentId);
@@ -50,7 +52,7 @@ export const ReplyCommentsRender: React.FC<ReplyCommentsRenderProps> = ({
     };
 
     fetchReplies();
-  }, [movieId, commentId, isUpdate]);
+  }, [movieId, commentId, isUpdate, collection]);
 
   return (
     <div className={css.commentsContainer}>

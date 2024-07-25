@@ -4,6 +4,7 @@ import {
   getRecommendedSerials,
   getSerialById,
   getTopRatedSerials,
+  getYoutubeVideoTrailer,
 } from '../SerialsApi';
 import { CastType, Movie } from '../types';
 import { defaultMovie } from './movieSlice';
@@ -20,6 +21,9 @@ export interface initialStateTypeSerials {
   };
   serialDetailsById: Movie;
   cast: CastType[];
+  youtubeVideoTrailer: {
+    key: string;
+  };
 }
 
 const initialState: initialStateTypeSerials = {
@@ -33,6 +37,9 @@ const initialState: initialStateTypeSerials = {
   },
   serialDetailsById: defaultMovie,
   cast: [],
+  youtubeVideoTrailer: {
+    key: '',
+  },
 };
 
 const serialsSlice = createSlice({
@@ -86,6 +93,12 @@ const serialsSlice = createSlice({
         getCast.fulfilled,
         (state, action: PayloadAction<CastType[]>) => {
           state.cast = action.payload;
+        },
+      )
+      .addCase(
+        getYoutubeVideoTrailer.fulfilled,
+        (state, action: PayloadAction<{ key: string }>) => {
+          state.youtubeVideoTrailer = action.payload;
         },
       );
   },

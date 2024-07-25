@@ -7,6 +7,7 @@ import { useUser } from '../../context';
 interface RenderCommentsProps {
   movieId: string;
   isUpdate: number;
+  collection: string;
 }
 
 interface Comment {
@@ -18,16 +19,21 @@ interface Comment {
   userEmail: string;
 }
 
-const RenderComments: FC<RenderCommentsProps> = ({ movieId, isUpdate }) => {
+const RenderComments: FC<RenderCommentsProps> = ({
+  movieId,
+  isUpdate,
+  collection,
+}) => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyTarget, setReplyTarget] = useState<string | null>(null);
   const { user } = useUser();
+  const [isOpenedReply, setIsOpenedReply] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
         const commentsSnapshot = await firestore
-          .collection('MoviesComments')
+          .collection(collection)
           .doc(movieId)
           .collection('comments')
           .orderBy('timestamp', 'asc')
@@ -44,12 +50,12 @@ const RenderComments: FC<RenderCommentsProps> = ({ movieId, isUpdate }) => {
     };
 
     fetchComments();
-  }, [movieId, isUpdate]);
+  }, [movieId, isUpdate, collection]);
 
   const handleDelete = async (commentId: string) => {
     try {
       await firestore
-        .collection('MoviesComments')
+        .collection(collection)
         .doc(movieId)
         .collection('comments')
         .doc(commentId)
@@ -90,14 +96,31 @@ const RenderComments: FC<RenderCommentsProps> = ({ movieId, isUpdate }) => {
                   Delete
                 </button>
               )}
-              <button
-                onClick={() => toggleReply(comment.id)}
-                className={css.replyBtn}
-              >
-                Open Replies
-              </button>
+              {isOpenedReply ? (
+                <button
+                  onClick={() => {
+                    toggleReply(comment.id);
+                    setIsOpenedReply(false);
+                  }}
+                  className={css.replyBtn}
+                >
+                  Close Replies
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    toggleReply(comment.id);
+                    setIsOpenedReply(true);
+                  }}
+                  className={css.replyBtn}
+                >
+                  Open Replies
+                </button>
+              )}
             </li>
-            {replyTarget === comment.id && <ReplyComments id={comment.id} />}
+            {replyTarget === comment.id && (
+              <ReplyComments id={comment.id} collection={collection} />
+            )}
           </div>
         ))}
       </ul>

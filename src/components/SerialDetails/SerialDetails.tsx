@@ -2,9 +2,13 @@ import { useEffect } from 'react';
 import css from './SerialDetails.module.scss';
 import { useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../hooks';
-import { getCast } from '../../SerialsApi';
+import { getCast, getYoutubeVideoTrailer } from '../../SerialsApi';
 import { defaultMovie, clearCast } from '../../redux/movieSlice';
-import { serialCast, serialDetailsById } from '../../redux/selectors';
+import {
+  serialCast,
+  serialDetailsById,
+  youtubeVideoTrailerSerial,
+} from '../../redux/selectors';
 import { clearSerialDetailsById } from '../../redux/serialsSlice';
 import { getSerialById } from '../../SerialsApi';
 import { Movie } from '../../types';
@@ -12,6 +16,7 @@ import CastRender from '../CastRender/CastRender';
 import { firestore } from '../../Firebase';
 import { useUser } from '../../context';
 import Comments from '../Comments/Comments';
+import MyYouTubePlayer from '../YouTubePlayer/YouTubePlayer';
 
 export const SerialDetails = () => {
   const { serialId } = useParams<{ serialId: string }>();
@@ -113,7 +118,12 @@ export const SerialDetails = () => {
           >
             Add to favorite
           </button>
-          <Comments id={serialId!} />
+          <MyYouTubePlayer
+            movieId={serialId!}
+            myDispatch={getYoutubeVideoTrailer}
+            mySelector={youtubeVideoTrailerSerial}
+          />
+          <Comments movieId={serialId!} collection="serialsComments" />
         </div>
       </div>
     </div>

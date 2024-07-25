@@ -64,3 +64,6 @@ export const favoriteMovies = (state: RootState) => state.movies.favoriteMovies;
 
 export const youtubeVideoTrailer = (state: RootState) =>
   state.movies.youtubeVideoTrailer;
+
+export const youtubeVideoTrailerSerial = (state: RootState) =>
+  state.serials.youtubeVideoTrailer;
